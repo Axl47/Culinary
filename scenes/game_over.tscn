@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://djogijp5tjdpu"]
+
+[ext_resource type="Texture2D" uid="uid://ddljb3knmgmd7" path="res://assets/background/lose.png" id="1_onkjc"]
+[ext_resource type="Texture2D" uid="uid://btupvxe1gyscq" path="res://assets/background/1024px-Vignette_(SuperTux).png" id="2_vmyb8"]
+[ext_resource type="Script" path="res://scenes/MenuButton.gd" id="3_7lqi2"]
+[ext_resource type="Texture2D" uid="uid://dh0nq4elou5en" path="res://assets/xd/plate_unpressed.png" id="3_66hw4"]
+[ext_resource type="Texture2D" uid="uid://d1oc2fblrnlw1" path="res://assets/xd/plate_pressed.png" id="4_05jrf"]
+
+[sub_resource type="GDScript" id="GDScript_tgp5d"]
+
+[node name="Game Over" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(970, 558)
+process_callback = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+script = SubResource("GDScript_tgp5d")
+
+[node name="LevelUI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="LevelUI"]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1880.0
+offset_bottom = -1040.0
+
+[node name="TextureRect2" type="TextureRect" parent="LevelUI/Control"]
+offset_left = -50.0
+offset_top = -16.0
+offset_right = 1964.0
+offset_bottom = 1121.0
+texture = ExtResource("1_onkjc")
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="LevelUI/Control/TextureRect2"]
+visible = false
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -9.0
+offset_top = 3.0
+offset_right = -4.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vmyb8")
+
+[node name="TextureButton" type="TextureButton" parent="LevelUI/Control"]
+offset_left = 681.0
+offset_top = 921.0
+offset_right = 1152.0
+offset_bottom = 1054.0
+texture_normal = ExtResource("3_66hw4")
+texture_pressed = ExtResource("4_05jrf")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_7lqi2")
+
+[connection signal="pressed" from="LevelUI/Control/TextureButton" to="LevelUI/Control/TextureButton" method="_on_pressed"]

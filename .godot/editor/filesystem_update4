@@ -1,16 +1,7 @@
-res://scenes/characters/character.tscn
-res://assets/kenney_pixel-platformer/Tilesheet (Tiles).txt
 res://scenes/main_level.tscn
-res://scenes/CameraFollow.gd
-res://scenes/characters/main_character.gd
-res://scenes/objects/oven.gd
-res://scenes/objects/oven.tscn
-res://scenes/objects/pressure_plate.gd
-res://scenes/objects/pressure_plate.tscn
-res://scenes/level_base.gd
-res://scenes/Lettuce.gd
-res://scenes/objects/lettuce.tscn
 res://scenes/level_1.tscn
-res://scenes/objects/utensils.tscn
-res://scenes/objects/floor.tscn
-res://shader/vignette.gdshader
+res://scenes/characters/character.tscn
+res://scenes/characters/main_character.gd
+res://scenes/game_over.tscn
+res://scenes/MenuButton.gd
+res://scenes/objects/oven.gd

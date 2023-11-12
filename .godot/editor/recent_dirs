@@ -1,9 +1,8 @@
-res://shader
+res://scenes
+res://assets/characters
 res://scenes/objects
 res://assets/objects
 res://assets/utilities
-res://scenes
 res://assets/xd
-res://assets/characters
 res://scenes/characters
 res://assets/kenney_pixel-platformer/Tilemap
