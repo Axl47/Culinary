@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdcw8n7lkfvt6"]
+
+[ext_resource type="Script" path="res://scenes/objects/oven.gd" id="1_5i8on"]
+[ext_resource type="Texture2D" uid="uid://gw3y65blfnjk" path="res://assets/utilities/stove.png" id="2_lvmlk"]
+[ext_resource type="Texture2D" uid="uid://d0qknrxgitpjs" path="res://assets/utilities/stove_fire.png" id="3_5yiip"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_axm1o"]
+size = Vector2(1167.7, 197.205)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dem0d"]
+size = Vector2(630.343, 611.893)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cxy3c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_lvmlk")
+}],
+"loop": true,
+"name": &"off",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5yiip")
+}],
+"loop": true,
+"name": &"on",
+"speed": 0.0
+}]
+
+[node name="StaticBody2D" type="StaticBody2D"]
+scale = Vector2(0.322, 0.322)
+script = ExtResource("1_5i8on")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(15.528, 98.6025)
+shape = SubResource("RectangleShape2D_axm1o")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(9.31665, -204.969)
+scale = Vector2(1.01, 1.01)
+
+[node name="Death" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-23.0612, 87.6329)
+shape = SubResource("RectangleShape2D_dem0d")
+
+[node name="Estufa" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(77.6398, -506.211)
+sprite_frames = SubResource("SpriteFrames_cxy3c")
+animation = &"on"
+autoplay = "on"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

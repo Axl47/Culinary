@@ -1,0 +1,135 @@
+[gd_scene load_steps=13 format=3 uid="uid://d2bp141xme0xx"]
+
+[ext_resource type="PackedScene" uid="uid://bxd0gu6vu0hal" path="res://scenes/objects/floor.tscn" id="1_clqho"]
+[ext_resource type="PackedScene" uid="uid://bue8qkom13ds4" path="res://scenes/characters/character.tscn" id="2_aylx2"]
+[ext_resource type="Texture2D" uid="uid://btupvxe1gyscq" path="res://assets/background/1024px-Vignette_(SuperTux).png" id="3_0bafh"]
+[ext_resource type="PackedScene" uid="uid://cdcw8n7lkfvt6" path="res://scenes/objects/oven.tscn" id="3_dorxm"]
+[ext_resource type="PackedScene" uid="uid://8baqpwh747gm" path="res://scenes/objects/pressure_plate.tscn" id="4_oqa7y"]
+[ext_resource type="Texture2D" uid="uid://joj2c4s0m886" path="res://assets/objects/bowl.png" id="5_thd33"]
+[ext_resource type="PackedScene" uid="uid://bo2htkhed81lx" path="res://scenes/objects/utensils.tscn" id="6_xelyw"]
+[ext_resource type="Texture2D" uid="uid://dlqd7geovwl7m" path="res://assets/objects/sink.png" id="7_mpyek"]
+[ext_resource type="Texture2D" uid="uid://cjl4texqxepaq" path="res://assets/objects/plate.png" id="8_chw7l"]
+
+[sub_resource type="Curve2D" id="Curve2D_5qao3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 9419, 732, 0, 0, 0, 0, 12839, 715)
+}
+point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0nrnp"]
+radius = 141.604
+height = 1058.51
+
+[sub_resource type="GDScript" id="GDScript_mdsg1"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="LevelUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="LevelUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="LevelUI/Control"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1880.0
+offset_bottom = 1040.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_0bafh")
+
+[node name="Wall" parent="." instance=ExtResource("1_clqho")]
+position = Vector2(-1498, -11329)
+rotation = -1.5708
+scale = Vector2(20, 20)
+
+[node name="Wall2" parent="." instance=ExtResource("1_clqho")]
+position = Vector2(8802, 1961)
+rotation = 3.14159
+scale = Vector2(20, 20)
+
+[node name="Floor" parent="." instance=ExtResource("1_clqho")]
+position = Vector2(1765, 239)
+scale = Vector2(3, 3)
+
+[node name="Mate" parent="." instance=ExtResource("2_aylx2")]
+position = Vector2(502, -281)
+scale = Vector2(2, 2)
+speed = 800.0
+jump_velocity = -1000.0
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Mate"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Floor2" parent="." instance=ExtResource("1_clqho")]
+position = Vector2(5294, 234)
+scale = Vector2(3, 3)
+
+[node name="Plate" parent="." instance=ExtResource("4_oqa7y")]
+position = Vector2(5769, -1079)
+
+[node name="Bowl" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1603, -273)
+rotation = -3.14159
+scale = Vector2(0.940346, 0.940346)
+texture = ExtResource("5_thd33")
+
+[node name="Utensils" parent="." instance=ExtResource("6_xelyw")]
+position = Vector2(4024, -598)
+rotation = -2.01586
+scale = Vector2(2, 2)
+
+[node name="Floor4" parent="." instance=ExtResource("1_clqho")]
+position = Vector2(8829, 233)
+scale = Vector2(3, 3)
+
+[node name="Oven" parent="." instance=ExtResource("3_dorxm")]
+position = Vector2(6278, -81)
+scale = Vector2(2, 2)
+
+[node name="Floor5" parent="." instance=ExtResource("1_clqho")]
+position = Vector2(15296, 225)
+scale = Vector2(3, 3)
+
+[node name="Sink" type="Sprite2D" parent="."]
+position = Vector2(11817, -1527)
+scale = Vector2(3.65732, 3.65732)
+texture = ExtResource("7_mpyek")
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(555, -356)
+curve = SubResource("Curve2D_5qao3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(9419, 732)
+rotation = -0.00497072
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(10742, -628)
+
+[node name="Plate2" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(579, -802)
+scale = Vector2(1.67317, 1.67317)
+texture = ExtResource("8_chw7l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1.00098, -17.9999)
+rotation = 1.52891
+scale = Vector2(1, 1)
+shape = SubResource("CapsuleShape2D_0nrnp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(502, -281)
+scale = Vector2(2, 2)
+zoom = Vector2(0.5, 0.5)
+process_callback = 0
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+script = SubResource("GDScript_mdsg1")

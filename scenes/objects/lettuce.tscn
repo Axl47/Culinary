@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7f4mbca3wqpn"]
+
+[ext_resource type="Texture2D" uid="uid://cld7xlmvecq2x" path="res://assets/xd/lechuga.png" id="1_06iv2"]
+[ext_resource type="Script" path="res://scenes/Lettuce.gd" id="2_ni7nk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w4ads"]
+radius = 111.59
+height = 223.18
+
+[node name="Lettuce" type="Sprite2D"]
+texture = ExtResource("1_06iv2")
+script = ExtResource("2_ni7nk")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_w4ads")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
