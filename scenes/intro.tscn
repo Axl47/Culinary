@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://b1nhcbw3ck0h3"]
+[gd_scene load_steps=17 format=3 uid="uid://b1nhcbw3ck0h3"]
 
 [ext_resource type="Texture2D" uid="uid://bkoumdve2a0qn" path="res://assets/background/start/1.png" id="1_b1woh"]
 [ext_resource type="Texture2D" uid="uid://gqnvmce3jkrx" path="res://assets/background/start/2.png" id="2_dwqj0"]
 [ext_resource type="Texture2D" uid="uid://tmaxsxfir4a7" path="res://assets/background/chaos.jpg" id="2_grnv5"]
 [ext_resource type="Texture2D" uid="uid://db1l3ownjhgfn" path="res://assets/background/start/3.png" id="3_psc8v"]
+[ext_resource type="Texture2D" uid="uid://nbjwptgm32is" path="res://assets/background/start/11.png" id="3_unule"]
 [ext_resource type="Texture2D" uid="uid://bj26m6el0upqq" path="res://assets/background/start/4.png" id="4_aagb1"]
 [ext_resource type="Texture2D" uid="uid://ba7so7d2e3je7" path="res://assets/background/start/5.png" id="5_ikhc6"]
 [ext_resource type="Texture2D" uid="uid://cj6cee7pv8gg4" path="res://assets/background/start/6.png" id="6_01225"]
@@ -23,6 +24,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"before",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_unule")
+}],
+"loop": true,
+"name": &"levels",
 "speed": 5.0
 }, {
 "frames": [{
@@ -86,19 +95,19 @@ script = ExtResource("12_os25k")
 position = Vector2(964.555, 541.5)
 scale = Vector2(1.01019, 1.01019)
 sprite_frames = SubResource("SpriteFrames_tnd0j")
-animation = &"start"
+animation = &"levels"
 autoplay = "before"
 
 [node name="TextureButton" type="TextureButton" parent="CanvasLayer/Control/Node2D/AnimatedSprite2D"]
 anchors_preset = -1
-anchor_left = 0.355
-anchor_top = 0.803
-anchor_right = 0.61
-anchor_bottom = 0.931
-offset_left = -960.6
-offset_top = -540.24
-offset_right = -957.2
-offset_bottom = -531.48
+anchor_left = 0.028
+anchor_top = 0.156
+anchor_right = 0.3
+anchor_bottom = 0.955
+offset_left = -960.76
+offset_top = -539.48
+offset_right = -960.0
+offset_bottom = -540.4
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -111,5 +120,6 @@ autoplay = true
 stream = ExtResource("14_rsi25")
 volume_db = -14.543
 
+[connection signal="animation_changed" from="CanvasLayer/Control/Node2D/AnimatedSprite2D" to="CanvasLayer/Control/Node2D" method="_on_animated_sprite_2d_animation_changed"]
 [connection signal="animation_finished" from="CanvasLayer/Control/Node2D/AnimatedSprite2D" to="CanvasLayer/Control/Node2D" method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="pressed" from="CanvasLayer/Control/Node2D/AnimatedSprite2D/TextureButton" to="CanvasLayer/Control/Node2D" method="_on_texture_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://d2bp141xme0xx"]
+[gd_scene load_steps=44 format=3 uid="uid://d2bp141xme0xx"]
 
 [ext_resource type="PackedScene" uid="uid://bue8qkom13ds4" path="res://scenes/characters/character.tscn" id="2_aylx2"]
 [ext_resource type="PackedScene" uid="uid://cbvggu07hujxe" path="res://bg.tscn" id="2_xhotj"]
@@ -16,14 +16,19 @@
 [ext_resource type="Texture2D" uid="uid://0eu7srj62vwy" path="res://assets/background/background.png" id="10_ix11f"]
 [ext_resource type="Texture2D" uid="uid://dae2qjlgxljcs" path="res://assets/background/grifo.png" id="11_0ckia"]
 [ext_resource type="Texture2D" uid="uid://dq4spe21fal7b" path="res://assets/utilities/door.png" id="11_jbh6s"]
+[ext_resource type="AudioStream" uid="uid://bxp07im7w6oik" path="res://assets/sfx/Hells_Kitchen_Violin_-_Sound_Effect_HD.mp3" id="11_spudg"]
 [ext_resource type="PackedScene" uid="uid://cpein7s37gfyr" path="res://scenes/objects/grifo.tscn" id="12_aq8a8"]
 [ext_resource type="Texture2D" uid="uid://do8ejo3w34xxl" path="res://assets/background/chorro_end.png" id="15_c4hnc"]
 [ext_resource type="Texture2D" uid="uid://chgnm8w3e7wre" path="res://assets/background/light.png" id="15_ix0rh"]
 [ext_resource type="PackedScene" uid="uid://2rc3dc752tq8" path="res://scenes/objects/Knife.tscn" id="16_3o5po"]
 [ext_resource type="Texture2D" uid="uid://ca2i4c2m3f6l4" path="res://assets/objects/Flour.png" id="18_pi42a"]
+[ext_resource type="AudioStream" uid="uid://ibc14ysrywbc" path="res://assets/sfx/water.mp3" id="22_jujyb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w23xs"]
+size = Vector2(210.565, 118.85)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wmmv8"]
-size = Vector2(23213.4, 788)
+size = Vector2(23213.4, 1050)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hmrjc"]
 size = Vector2(55.1676, 8.36014)
@@ -63,12 +68,12 @@ size = Vector2(28.9505, 177.642)
 
 [sub_resource type="Curve2D" id="Curve2D_xrbgg"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 3162.85, -252.417, 0, 0, 0, 0, 3222.9, -279.389, 0, 0, 0, 0, 4385.24, -243.257, 0, 0, 0, 0, 7517.05, -252.417)
+"points": PackedVector2Array(0, 0, 0, 0, 3162.85, -252.417, 0, 0, 0, 0, 7843.26, -263.613)
 }
-point_count = 4
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x0bdj"]
-size = Vector2(195.442, 11.9979)
+size = Vector2(195.442, 17.4714)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tbw8h"]
 radius = 36.6184
@@ -106,6 +111,12 @@ offset_bottom = 1040.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_0bafh")
+
+[node name="TextureRect" type="TextureRect" parent="LevelUI/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("15_ix0rh")
 
 [node name="BG" type="Control" parent="."]
 layout_mode = 3
@@ -172,16 +183,53 @@ offset_right = 31376.0
 offset_bottom = 779.0
 texture = ExtResource("6_j0yeu")
 
+[node name="Invisible Walls" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 38468.0
+offset_top = -12533.0
+offset_right = 53170.0
+offset_bottom = 1345.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Invisible Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Invisible Walls/StaticBody2D"]
+position = Vector2(8787.14, 4362.64)
+scale = Vector2(49.855, 49.855)
+shape = SubResource("RectangleShape2D_w23xs")
+
+[node name="Audio" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -11147.0
+offset_right = 52525.0
+offset_bottom = 40.0
+
+[node name="Violin" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("11_spudg")
+volume_db = -6.293
+
+[node name="Music" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("10_1aer2")
+volume_db = -11.593
+autoplay = true
+
+[node name="Faucet" type="AudioStreamPlayer2D" parent="Audio"]
+position = Vector2(25781, 11353)
+stream = ExtResource("22_jujyb")
+volume_db = 7.287
+max_distance = 10000.0
+
 [node name="Platforms" type="Node2D" parent="."]
 
 [node name="Floor" type="StaticBody2D" parent="Platforms"]
 
 [node name="Floor1" type="CollisionShape2D" parent="Platforms/Floor"]
-position = Vector2(9658.28, 395)
+position = Vector2(9658.28, 264)
 shape = SubResource("RectangleShape2D_wmmv8")
 
 [node name="Floor2" type="CollisionShape2D" parent="Platforms/Floor"]
-position = Vector2(34029, 355)
+position = Vector2(34029, 272)
 shape = SubResource("RectangleShape2D_wmmv8")
 
 [node name="Ceiling Platform" type="StaticBody2D" parent="Platforms"]
@@ -190,7 +238,6 @@ scale = Vector2(43.54, 43.54)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ceiling Platform"]
 position = Vector2(1.45154, 0.333038)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_hmrjc")
 
 [node name="Ceiling Platform2" type="StaticBody2D" parent="Platforms"]
@@ -204,7 +251,6 @@ texture = ExtResource("8_f7cjo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ceiling Platform2"]
 position = Vector2(450.843, 146.572)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_is6ie")
 
 [node name="Win" type="Area2D" parent="Platforms/Ceiling Platform2"]
@@ -281,25 +327,24 @@ scale = Vector2(41.45, 41.45)
 shape = SubResource("RectangleShape2D_1q2ho")
 
 [node name="Oven" parent="." instance=ExtResource("3_dorxm")]
-position = Vector2(13876, -335)
+position = Vector2(14155, -335)
 scale = Vector2(3.64, 3.64)
 
 [node name="Utensils" parent="." instance=ExtResource("6_xelyw")]
-position = Vector2(8980, -1090)
+position = Vector2(9637, -1437)
 rotation = -2.01586
 scale = Vector2(3.265, 3.265)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(2176, -1908)
-zoom = Vector2(0.35, 0.35)
+position = Vector2(1250, -673)
+zoom = Vector2(0.4, 0.4)
 process_callback = 0
 position_smoothing_enabled = true
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
+position_smoothing_speed = 10.0
 script = SubResource("GDScript_mdsg1")
 
 [node name="Moving Plate" parent="." instance=ExtResource("9_7odv7")]
-position = Vector2(15520, 242)
+position = Vector2(15175, 83)
 scale = Vector2(1.965, 1.965)
 curve = SubResource("Curve2D_xrbgg")
 loop = false
@@ -308,7 +353,7 @@ speed = 0.5
 [node name="Water Death" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water Death"]
-position = Vector2(25984.5, 237.25)
+position = Vector2(25969, 105.75)
 scale = Vector2(48.05, 48.05)
 shape = SubResource("RectangleShape2D_x0bdj")
 
@@ -334,6 +379,11 @@ position = Vector2(39090, -9917)
 scale = Vector2(5.21, 5.21)
 curve = SubResource("Curve2D_ja5rb")
 
+[node name="Timer" type="Timer" parent="Knife"]
+process_callback = 0
+wait_time = 0.57
+one_shot = true
+
 [node name="Death" type="Area2D" parent="."]
 scale = Vector2(5.21, 5.21)
 
@@ -351,17 +401,11 @@ shape = SubResource("RectangleShape2D_whw3w")
 
 [node name="Mate" parent="." instance=ExtResource("2_aylx2")]
 z_index = 1
-position = Vector2(2176, -1908)
+position = Vector2(1250, -673)
 speed = 2500.0
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Mate"]
 remote_path = NodePath("../../Camera2D")
-
-[node name="Light" type="Sprite2D" parent="Mate"]
-z_index = 1
-position = Vector2(-35.5557, 20.0002)
-scale = Vector2(3.39259, 3.39259)
-texture = ExtResource("15_ix0rh")
 
 [node name="Grifo" type="Sprite2D" parent="."]
 z_index = 2
@@ -369,15 +413,10 @@ position = Vector2(26056.5, -2210.5)
 scale = Vector2(5.43177, 5.48056)
 texture = ExtResource("11_0ckia")
 
-[node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_1aer2")
-volume_db = -11.593
-autoplay = true
-
 [connection signal="body_entered" from="Platforms/Ceiling Platform2/Win" to="Mate" method="_on_win_body_entered"]
 [connection signal="body_entered" from="Water Death" to="Mate" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Water" to="Mate" method="_on_water_body_entered"]
 [connection signal="body_exited" from="Water" to="Mate" method="_on_water_body_exited"]
+[connection signal="timeout" from="Knife/Timer" to="Handle" method="_on_timer_timeout"]
 [connection signal="body_entered" from="Death" to="Mate" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Knife Trigger" to="Mate" method="_on_knife_trigger_body_entered"]
 [connection signal="body_entered" from="Knife Trigger" to="Handle" method="_on_knife_trigger_body_entered"]

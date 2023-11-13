@@ -8,7 +8,6 @@ extends CharacterBody2D
 @onready var knife = $"../Knife"
 
 var onWater := false
-var knifeFell := false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -62,13 +61,6 @@ func _on_water_body_entered(body):
 func _on_water_body_exited(body):
 	if body.name == "Mate":
 		onWater = false
-
-
-func _on_knife_trigger_body_entered(body):
-	if not knifeFell:
-		knife.Fall()
-	
-	knifeFell = true
 
 
 func _on_win_body_entered(body):

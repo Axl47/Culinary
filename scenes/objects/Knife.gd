@@ -7,7 +7,7 @@ extends Path2D
 @onready var path = $PathFollow2D
 @onready var animation = $AnimationPlayer
 
+
 func Fall():
 	animation.play("fall")
 	animation.speed_scale = speed
-

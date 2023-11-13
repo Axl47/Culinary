@@ -4,6 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://gw3y65blfnjk" path="res://assets/utilities/stove.png" id="2_lvmlk"]
 [ext_resource type="Texture2D" uid="uid://d0qknrxgitpjs" path="res://assets/utilities/stove_fire.png" id="3_5yiip"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g1b10"]
+radius = 273.661
+height = 571.921
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_axm1o"]
 size = Vector2(1167.7, 197.205)
 
@@ -26,13 +30,19 @@ animations = [{
 "speed": 0.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g1b10"]
-radius = 273.661
-height = 571.921
-
 [node name="StaticBody2D" type="StaticBody2D"]
 scale = Vector2(0.322, 0.322)
 script = ExtResource("1_5i8on")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(9.31665, -204.969)
+scale = Vector2(1.01, 1.01)
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+
+[node name="Death" type="CollisionShape2D" parent="Node2D/Area2D"]
+position = Vector2(-6.14956, 73.7962)
+shape = SubResource("CapsuleShape2D_g1b10")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(15.528, 98.6025)
@@ -45,18 +55,10 @@ sprite_frames = SubResource("SpriteFrames_cxy3c")
 animation = &"on"
 autoplay = "on"
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(9.31665, -204.969)
-scale = Vector2(1.01, 1.01)
-
-[node name="Death" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-6.14956, 73.7962)
-shape = SubResource("CapsuleShape2D_g1b10")
-
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 5.2
+wait_time = 2.513
 autostart = true
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

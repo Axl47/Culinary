@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="CulinaryChaos"
-run/main_scene="res://scenes/main_level.tscn"
+run/main_scene="res://scenes/intro.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="res://assets/utilities/knife_curso3r.png"
 
 [input]
 

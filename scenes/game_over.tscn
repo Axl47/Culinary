@@ -29,6 +29,7 @@ offset_right = -1880.0
 offset_bottom = -1040.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect2" type="TextureRect" parent="LevelUI/Control"]
 layout_mode = 0
@@ -38,6 +39,7 @@ offset_right = 1964.0
 offset_bottom = 1121.0
 texture = ExtResource("2_ow5ka")
 stretch_mode = 5
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="LevelUI/Control/TextureRect2"]
 visible = false
@@ -63,6 +65,7 @@ offset_left = -1.52588e-05
 offset_top = -6.10352e-05
 offset_right = -3.05176e-05
 offset_bottom = -6.10352e-05
+metadata/_edit_use_anchors_ = true
 
 [node name="Retry" type="TextureButton" parent="LevelUI/Control"]
 layout_mode = 1
@@ -73,6 +76,7 @@ anchor_right = 43.4
 anchor_bottom = 26.0
 offset_left = -0.00012207
 offset_bottom = -0.00012207
+metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_vapr2")

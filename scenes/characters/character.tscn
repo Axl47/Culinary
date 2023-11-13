@@ -36,6 +36,8 @@ sprite_frames = SubResource("SpriteFrames_1hhti")
 animation = &"idle"
 autoplay = "idle"
 flip_h = true
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_g0wcf")
+metadata/_edit_group_ = true

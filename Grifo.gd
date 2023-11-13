@@ -7,6 +7,10 @@ extends Node2D
 @onready var sink = $"../BG/Sink"
 @onready var sink_flood = $"../BG/Sink_Flood"
 @onready var chorro = $"../Water/Chorro"
+@onready var faucet = $"../Audio/Faucet"
+@onready var violin = $"../Audio/Violin"
+@onready var knife = $"../Knife"
+@onready var timer = $"../Knife/Timer"
 
 var playerInside: bool = false
 var knifeFell := false
@@ -31,7 +35,15 @@ func flood_level():
 	sink.visible = false
 	sink_flood.visible = true
 	chorro.disabled = false
+	faucet.play()
 
 
 func _on_knife_trigger_body_entered(body):
-	knifeFell = true
+	if body.name == "Mate" and not knifeFell:
+		knife.Fall()
+		knifeFell = true
+		timer.start()
+
+
+func _on_timer_timeout():
+	violin.play()
