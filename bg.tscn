@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbvggu07hujxe"]
+
+[ext_resource type="Texture2D" uid="uid://0eu7srj62vwy" path="res://assets/background/background.png" id="1_3lgyk"]
+
+[node name="TextureRect2" type="TextureRect"]
+offset_left = -385.0
+offset_top = -5209.0
+offset_right = 10270.0
+offset_bottom = 788.0
+texture = ExtResource("1_3lgyk")
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 10457.0
+offset_top = -4.0
+offset_right = 21112.0
+offset_bottom = 5993.0
+texture = ExtResource("1_3lgyk")
+stretch_mode = 5
+flip_h = true

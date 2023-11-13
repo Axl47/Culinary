@@ -1,0 +1,115 @@
+[gd_scene load_steps=16 format=3 uid="uid://b1nhcbw3ck0h3"]
+
+[ext_resource type="Texture2D" uid="uid://bkoumdve2a0qn" path="res://assets/background/start/1.png" id="1_b1woh"]
+[ext_resource type="Texture2D" uid="uid://gqnvmce3jkrx" path="res://assets/background/start/2.png" id="2_dwqj0"]
+[ext_resource type="Texture2D" uid="uid://tmaxsxfir4a7" path="res://assets/background/chaos.jpg" id="2_grnv5"]
+[ext_resource type="Texture2D" uid="uid://db1l3ownjhgfn" path="res://assets/background/start/3.png" id="3_psc8v"]
+[ext_resource type="Texture2D" uid="uid://bj26m6el0upqq" path="res://assets/background/start/4.png" id="4_aagb1"]
+[ext_resource type="Texture2D" uid="uid://ba7so7d2e3je7" path="res://assets/background/start/5.png" id="5_ikhc6"]
+[ext_resource type="Texture2D" uid="uid://cj6cee7pv8gg4" path="res://assets/background/start/6.png" id="6_01225"]
+[ext_resource type="Texture2D" uid="uid://b1jbqlbofr1gi" path="res://assets/background/start/7.png" id="7_thwt2"]
+[ext_resource type="Texture2D" uid="uid://cqkic4rg80w2" path="res://assets/background/start/8.png" id="8_2puxr"]
+[ext_resource type="Texture2D" uid="uid://dsbfbltrst568" path="res://assets/background/start/9.png" id="9_n1vee"]
+[ext_resource type="Texture2D" uid="uid://bwg114fq6x213" path="res://assets/background/start/10.png" id="10_snpo4"]
+[ext_resource type="AudioStream" uid="uid://co5rfbom67cap" path="res://assets/music/intro_culinary_1.mp3" id="12_7u3e4"]
+[ext_resource type="Script" path="res://scenes/Start.gd" id="12_os25k"]
+[ext_resource type="AudioStream" uid="uid://bl25t4fy438vw" path="res://assets/sfx/fridge.mp3" id="14_rsi25"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tnd0j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_grnv5")
+}],
+"loop": false,
+"name": &"before",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_grnv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_b1woh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dwqj0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_psc8v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_aagb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ikhc6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_01225")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_thwt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2puxr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_n1vee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_snpo4")
+}],
+"loop": false,
+"name": &"start",
+"speed": 5.0
+}]
+
+[node name="Intro" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchor_left = 0.01
+anchor_top = 0.018
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -19.2
+offset_top = -19.44
+offset_right = -1031.0
+offset_bottom = -584.0
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer/Control"]
+script = ExtResource("12_os25k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Control/Node2D"]
+position = Vector2(964.555, 541.5)
+scale = Vector2(1.01019, 1.01019)
+sprite_frames = SubResource("SpriteFrames_tnd0j")
+animation = &"start"
+autoplay = "before"
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Control/Node2D/AnimatedSprite2D"]
+anchors_preset = -1
+anchor_left = 0.355
+anchor_top = 0.803
+anchor_right = 0.61
+anchor_bottom = 0.931
+offset_left = -960.6
+offset_top = -540.24
+offset_right = -957.2
+offset_bottom = -531.48
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/Control/Node2D/AnimatedSprite2D"]
+stream = ExtResource("12_7u3e4")
+volume_db = -22.306
+autoplay = true
+
+[node name="Fridge" type="AudioStreamPlayer" parent="CanvasLayer/Control/Node2D/AnimatedSprite2D"]
+stream = ExtResource("14_rsi25")
+volume_db = -14.543
+
+[connection signal="animation_finished" from="CanvasLayer/Control/Node2D/AnimatedSprite2D" to="CanvasLayer/Control/Node2D" method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="pressed" from="CanvasLayer/Control/Node2D/AnimatedSprite2D/TextureButton" to="CanvasLayer/Control/Node2D" method="_on_texture_button_pressed"]

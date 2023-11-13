@@ -1,8 +1,10 @@
 res://scenes
-res://assets/characters
+res://assets/background
 res://scenes/objects
+res://
+res://assets/background/start
+res://assets/characters
 res://assets/objects
 res://assets/utilities
 res://assets/xd
 res://scenes/characters
-res://assets/kenney_pixel-platformer/Tilemap

@@ -1,16 +1,17 @@
 [gd_scene load_steps=14 format=3 uid="uid://dj2n6lm4mvoqv"]
 
 [ext_resource type="Script" path="res://scenes/level_base.gd" id="1_446id"]
-[ext_resource type="Texture2D" uid="uid://ppddftxcuw0e" path="res://assets/kenney_pixel-platformer/Tilemap/tilemap.png" id="1_c5h4d"]
 [ext_resource type="PackedScene" uid="uid://bue8qkom13ds4" path="res://scenes/characters/character.tscn" id="2_ve8vy"]
-[ext_resource type="Texture2D" uid="uid://g3nu44gus6ee" path="res://assets/kenney_pixel-platformer/Tilemap/tilemap-backgrounds_packed.png" id="3_nw62j"]
 [ext_resource type="PackedScene" uid="uid://cdcw8n7lkfvt6" path="res://scenes/objects/oven.tscn" id="4_6m48g"]
 [ext_resource type="Texture2D" uid="uid://c4t25v48f571v" path="res://assets/background/bg1.png" id="5_rma8d"]
 [ext_resource type="PackedScene" uid="uid://8baqpwh747gm" path="res://scenes/objects/pressure_plate.tscn" id="6_e6106"]
 [ext_resource type="PackedScene" uid="uid://c7f4mbca3wqpn" path="res://scenes/objects/lettuce.tscn" id="8_3fnxu"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xwubm"]
+load_path = "res://.godot/imported/tilemap.png-06d17e0f155bb72aa9e1508d840554e2.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lqo8j"]
-texture = ExtResource("1_c5h4d")
+texture = SubResource("CompressedTexture2D_xwubm")
 separation = Vector2i(1, 1)
 texture_region_size = Vector2i(18, 18)
 0:0/0 = 0
@@ -629,8 +630,11 @@ texture_region_size = Vector2i(18, 18)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_lqo8j")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vl4mi"]
+load_path = "res://.godot/imported/tilemap-backgrounds_packed.png-5fc85e268c84598e4f6f76300587e4ef.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3ny87"]
-texture = ExtResource("3_nw62j")
+texture = SubResource("CompressedTexture2D_vl4mi")
 texture_region_size = Vector2i(24, 24)
 0:0/0 = 0
 1:0/0 = 0

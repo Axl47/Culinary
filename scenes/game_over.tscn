@@ -1,14 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://djogijp5tjdpu"]
+[gd_scene load_steps=6 format=3 uid="uid://djogijp5tjdpu"]
 
-[ext_resource type="Texture2D" uid="uid://ddljb3knmgmd7" path="res://assets/background/lose.png" id="1_onkjc"]
+[ext_resource type="Script" path="res://scenes/game_over.gd" id="1_wpnqm"]
+[ext_resource type="Texture2D" uid="uid://ddljb3knmgmd7" path="res://assets/background/Lose.png" id="2_ow5ka"]
 [ext_resource type="Texture2D" uid="uid://btupvxe1gyscq" path="res://assets/background/1024px-Vignette_(SuperTux).png" id="2_vmyb8"]
-[ext_resource type="Script" path="res://scenes/MenuButton.gd" id="3_7lqi2"]
-[ext_resource type="Texture2D" uid="uid://dh0nq4elou5en" path="res://assets/xd/plate_unpressed.png" id="3_66hw4"]
-[ext_resource type="Texture2D" uid="uid://d1oc2fblrnlw1" path="res://assets/xd/plate_pressed.png" id="4_05jrf"]
+[ext_resource type="AudioStream" uid="uid://dqodfq2v2x4j" path="res://assets/music/lose.mp3" id="4_vapr2"]
 
 [sub_resource type="GDScript" id="GDScript_tgp5d"]
 
 [node name="Game Over" type="Node2D"]
+script = ExtResource("1_wpnqm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(970, 558)
@@ -22,17 +22,21 @@ script = SubResource("GDScript_tgp5d")
 
 [node name="Control" type="Control" parent="LevelUI"]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -1880.0
 offset_bottom = -1040.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TextureRect2" type="TextureRect" parent="LevelUI/Control"]
+layout_mode = 0
 offset_left = -50.0
 offset_top = -16.0
 offset_right = 1964.0
 offset_bottom = 1121.0
-texture = ExtResource("1_onkjc")
+texture = ExtResource("2_ow5ka")
 stretch_mode = 5
 
 [node name="TextureRect" type="TextureRect" parent="LevelUI/Control/TextureRect2"]
@@ -48,15 +52,32 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_vmyb8")
 
-[node name="TextureButton" type="TextureButton" parent="LevelUI/Control"]
-offset_left = 681.0
-offset_top = 921.0
-offset_right = 1152.0
-offset_bottom = 1054.0
-texture_normal = ExtResource("3_66hw4")
-texture_pressed = ExtResource("4_05jrf")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("3_7lqi2")
+[node name="Return" type="TextureButton" parent="LevelUI/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 4.35
+anchor_top = 23.025
+anchor_right = 10.125
+anchor_bottom = 25.175
+offset_left = -1.52588e-05
+offset_top = -6.10352e-05
+offset_right = -3.05176e-05
+offset_bottom = -6.10352e-05
 
-[connection signal="pressed" from="LevelUI/Control/TextureButton" to="LevelUI/Control/TextureButton" method="_on_pressed"]
+[node name="Retry" type="TextureButton" parent="LevelUI/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 38.8
+anchor_top = 22.2
+anchor_right = 43.4
+anchor_bottom = 26.0
+offset_left = -0.00012207
+offset_bottom = -0.00012207
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vapr2")
+volume_db = -8.28
+autoplay = true
+
+[connection signal="pressed" from="LevelUI/Control/Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="LevelUI/Control/Retry" to="." method="_on_retry_pressed"]

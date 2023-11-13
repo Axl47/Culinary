@@ -5,6 +5,10 @@ extends CharacterBody2D
 @export var jump_velocity : float = -3000.0
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var knife = $"../Knife"
+
+var onWater := false
+var knifeFell := false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -30,13 +34,44 @@ func _physics_process(delta):
 	if direction:
 
 		velocity.x = direction * speed
-		rotation -= (direction / delta / 10 - 0.005)
+		rotation += (direction / 10 - 0.005)
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		if is_on_floor():
 			rotation = 0
+	
+	if onWater:
+		velocity.y = jump_velocity
 
 	move_and_slide()
 	
 	var isLeft = velocity.x < 0
 	animated_sprite_2d.flip_h = isLeft
+
+
+func _on_area_2d_body_entered(body):
+	if body.name == "Mate":
+		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+
+
+func _on_water_body_entered(body):
+	if body.name == "Mate":
+		onWater = true
+
+
+func _on_water_body_exited(body):
+	if body.name == "Mate":
+		onWater = false
+
+
+func _on_knife_trigger_body_entered(body):
+	if not knifeFell:
+		knife.Fall()
+	
+	knifeFell = true
+
+
+func _on_win_body_entered(body):
+	if body.name == "Mate":
+		get_tree().change_scene_to_file("res://scenes/win.tscn")
+

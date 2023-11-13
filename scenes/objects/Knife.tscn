@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://2rc3dc752tq8"]
+
+[ext_resource type="Script" path="res://scenes/objects/Knife.gd" id="1_u12o8"]
+[ext_resource type="Texture2D" uid="uid://cm0662a7efns4" path="res://assets/objects/Knife.png" id="1_x0hx5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4a5g"]
+size = Vector2(123.207, 900.114)
+
+[sub_resource type="Animation" id="Animation_7s2ug"]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(10, 0.5),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_uooxj"]
+resource_name = "lower"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(3, 0.3),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t7brd"]
+_data = {
+"RESET": SubResource("Animation_7s2ug"),
+"fall": SubResource("Animation_uooxj")
+}
+
+[node name="Path2D" type="Path2D"]
+script = ExtResource("1_u12o8")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotation = 1.57638
+rotates = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D"]
+remote_path = NodePath("../../AnimatableBody2D")
+update_rotation = false
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+rotation = 1.5708
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+position = Vector2(-158, 458)
+rotation = -1.22348
+texture = ExtResource("1_x0hx5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+position = Vector2(-32.0584, 2.01695)
+rotation = -1.63363
+shape = SubResource("RectangleShape2D_p4a5g")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimatableBody2D/Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_t7brd")
+}
